@@ -6,7 +6,9 @@ export default class Draw extends Component {
 		this.state = {
 			modeDessin: false,
 			canvasWidth: "",
-			canvasHeight: ""
+			canvasHeight: "",
+			pageX : "",
+			pageY : ""
 		}
 		this.handleOnMouseDown = this.handleOnMouseDown.bind(this);
 		this.handleOnMouseUp = this.handleOnMouseUp.bind(this);
@@ -42,7 +44,7 @@ export default class Draw extends Component {
 	}
 
 	handleOnMouseUp() {
-		this.setState({modeDessin: false})
+		this.setState({modeDessin: false, pageX : "", pageY : ""})
 	}
 
 	handleOnMouseMove(e) {
@@ -50,10 +52,15 @@ export default class Draw extends Component {
 			const myCanvas = this.refs.myCanvas;
 			const rect = myCanvas.getBoundingClientRect();
 			const ctx = myCanvas.getContext("2d");
-			ctx.beginPath();
-			ctx.arc(e.pageX - rect.x, e.pageY - rect.y, 10, 0, 2 * Math.PI);
-			ctx.fillStyle = "black";
-			ctx.fill();
+
+			if(this.state.pageX !== "") {
+				ctx.beginPath();
+				ctx.moveTo(this.state.pageX - rect.x, this.state.pageY - rect.y);
+				ctx.lineTo(e.pageX - rect.x, e.pageY - rect.y);
+				ctx.lineWidth = 10;
+				ctx.stroke();
+			}
+			this.setState({pageX : e.pageX, pageY : e.pageY});
 		}
 	}
 
@@ -64,7 +71,7 @@ export default class Draw extends Component {
 
 	handleOnTouchEnd() {
 		console.log('touchend');
-		this.setState({modeDessin : false});
+		this.setState({modeDessin : false, pageX : "", pageY : ""});
 	}
 
 	handleOnTouchMove(e) {
@@ -74,10 +81,27 @@ export default class Draw extends Component {
 			const myCanvas = this.refs.myCanvas;
 			const rect = myCanvas.getBoundingClientRect();
 			const ctx = myCanvas.getContext("2d");
-			ctx.beginPath();
-			ctx.arc(pageX - rect.x, pageY - rect.y, 10, 0, 2 * Math.PI);
-			ctx.fillStyle = "black";
-			ctx.fill();
+			// Nice line effect
+			// ctx.beginPath();
+			// ctx.moveTo(pageX - rect.x, pageY - rect.y);
+			// ctx.lineTo(pageX - rect.x + 15, pageY - rect.y - 15);
+			// ctx.lineWidth = 1;
+			// ctx.stroke();
+
+			// Basic circles
+			// ctx.beginPath();
+			// ctx.arc(pageX - rect.x, pageY - rect.y, 10, 0, 2 * Math.PI);
+			// ctx.fillStyle = "black";
+			// ctx.fill();
+
+			if(this.state.pageX !== "") {
+				ctx.beginPath();
+				ctx.moveTo(this.state.pageX - rect.x, this.state.pageY - rect.y);
+				ctx.lineTo(pageX - rect.x, pageY - rect.y);
+				ctx.lineWidth = 10;
+				ctx.stroke();
+			}
+			this.setState({pageX : pageX, pageY : pageY});
 		}
 	}
 
