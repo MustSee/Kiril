@@ -12,15 +12,21 @@ export default class Draw extends Component {
 		this.handleOnMouseUp = this.handleOnMouseUp.bind(this);
 		this.handleOnMouseMove = this.handleOnMouseMove.bind(this);
 		this.handleOnDoubleClick = this.handleOnDoubleClick.bind(this);
+		this.updateDimensions = this.updateDimensions.bind(this);
 	}
 
-	componentDidMount() {
+	updateDimensions() {
 		const myCanvas = this.refs.myCanvas;
 		const rect = myCanvas.getBoundingClientRect();
 		this.setState({
 			canvasWidth : rect.width,
 			canvasHeight : rect.height
 		});
+	}
+
+	componentDidMount() {
+		this.updateDimensions();
+		window.addEventListener("resize", this.updateDimensions)
 	}
 
 	handleOnMouseDown(e) {
