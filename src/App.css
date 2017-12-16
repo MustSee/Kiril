@@ -1,0 +1,84 @@
+.global {
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    height : 100vh;
+    width : 100%;
+    background-color : #568e9e;
+}
+
+.top {
+    width : 30vw;
+    height : 15vh;
+    background-color : #ffe77f;
+    border-top : 2px solid #218072;
+    border-left : 2px solid #218072;
+    border-right : 2px solid #218072;
+    display : flex;
+}
+
+.bottom {
+    width : 30vw;
+    height : 15vh;
+    background-color : #ffe77f;
+    border-bottom : 2px solid #218072;
+    border-left : 2px solid #218072;
+    border-right : 2px solid #218072;
+    /* for the content */
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    font-size : xx-large;
+}
+
+canvas {
+    width : 30vw;
+    height : Calc(70vh - 4px);
+    background-color : white;
+    border : 2px solid #218072;
+    cursor : pointer;
+}
+
+.alphabet {
+    width : 33%;
+    height : inherit;
+    background-color : violet;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    font-size : xx-large;
+}
+
+.counter {
+    width : 34%;
+    height : inherit;
+    background-color : lightcoral;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    font-size : xx-large;
+}
+
+.backToHomepage {
+    width : 33%;
+    height : inherit;
+    background-color : cornsilk;
+}
+
+@media (max-width: 768px) and (orientation : portrait) {
+    .top {
+        width : 100vw;
+        border : none;
+    }
+
+    .bottom {
+        width : 100vw;
+        border : none;
+    }
+
+    canvas {
+        width : 100vw;
+        height : 70vh;
+        border : none;
+    }
+}
