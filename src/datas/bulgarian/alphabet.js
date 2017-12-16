@@ -1,7 +1,7 @@
 let bulgare = [
 	{"letter" : {"uppercase" : "A", "lowercase" : "a"}, "prononciation" : "a"},
 	{"letter" : {"uppercase" : "Б", "lowercase" : "б"}, "prononciation" : "b"},
-	{"letter" : {"uppercase" : "В", "lowercase" : "в"}, "prononciation" : "a"},
+	{"letter" : {"uppercase" : "В", "lowercase" : "в"}, "prononciation" : "v"},
 	{"letter" : {"uppercase" : "Г", "lowercase" : "г"}, "prononciation" : "gu"},
 	{"letter" : {"uppercase" : "Д", "lowercase" : "д ou g"}, "prononciation" : "d"},
 	{"letter" : {"uppercase" : "Е", "lowercase" : "е"}, "prononciation" : "é"},

@@ -76,7 +76,7 @@ export default class Draw extends Component {
 			const ctx = myCanvas.getContext("2d");
 			ctx.beginPath();
 			ctx.arc(pageX - rect.x, pageY - rect.y, 10, 0, 2 * Math.PI);
-			ctx.fillStyle = "red";
+			ctx.fillStyle = "black";
 			ctx.fill();
 		}
 	}

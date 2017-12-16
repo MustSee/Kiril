@@ -34,7 +34,7 @@
 
 .back, .forth {
     background-color : #64fff7;
-    padding : 25px 15px;
+    padding: 25px 15px;
     border-radius : 50%;
     cursor : pointer;
 }
@@ -88,5 +88,40 @@ canvas {
         width : 100vw;
         height : 70vh;
         border : none;
+    }
+}
+
+@media (max-width: 768px) and (orientation : landscape) {
+    .global {
+        flex-direction : row;
+    }
+
+    .top, canvas, .bottom {
+        height : 100vh;
+        border : none;
+    }
+
+    .top {
+        flex-direction : column;
+        width : 15%;
+    }
+
+    canvas {
+        width : 70%;
+    }
+
+    .bottom {
+        width : 15%;
+        display : flex;
+        flex-direction : column;
+        justify-content : space-around;
+    }
+
+    .counter {
+        font-size : x-large;
+    }
+
+    .alphabet, .counter, .backToHomepage {
+        width : 100%;
     }
 }
