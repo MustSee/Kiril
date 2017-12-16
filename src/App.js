@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import './App.css';
 import bulgare from './datas/bulgarian/alphabet';
 import Alphabet from './components/alphabet';
+import Back from './components/back';
 import Counter from './components/counter';
 import Draw from './components/draw';
+import Forth from './components/forth';
 import HomePage from './components/backToHomepage';
 import Prononciation from './components/prononciation';
 
@@ -38,7 +40,9 @@ class App extends Component {
 					<HomePage/>
 				</div>
 				<Draw incrementCounter={this.incrementCounter} />
+				<Back/>
 				<Prononciation prononciation={this.state.letters[this.state.counter].prononciation} />
+				<Forth/>
 			</div>
 			)
   }
