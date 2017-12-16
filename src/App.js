@@ -18,6 +18,7 @@ class App extends Component {
 			total : bulgare.length
 		}
 		this.incrementCounter = this.incrementCounter.bind(this);
+		this.backAndForth = this.backAndForth.bind(this);
 	}
 
 	incrementCounter() {
@@ -30,6 +31,17 @@ class App extends Component {
 		});
 	}
 
+	backAndForth(val) {
+		let count = this.state.counter;
+		if(count + val >= this.state.total) {
+			this.setState({counter : 0});
+		} else if (count + val <= 0) {
+			this.setState({ counter : 0})
+		} else {
+			this.setState({ counter : count + val})
+		}
+	}
+
   render() {
   	console.log(this.state.letters);
   	return(
@@ -39,10 +51,12 @@ class App extends Component {
 					<Counter counter={this.state.counter} total={this.state.total}/>
 					<HomePage/>
 				</div>
-				<Draw incrementCounter={this.incrementCounter} />
-				<Back/>
-				<Prononciation prononciation={this.state.letters[this.state.counter].prononciation} />
-				<Forth/>
+				<Draw incrementCounter={this.incrementCounter} counter={this.state.counter} />
+				<div className="bottom">
+					<Back backAndForth={this.backAndForth}/>
+					<Prononciation prononciation={this.state.letters[this.state.counter].prononciation} />
+					<Forth backAndForth={this.backAndForth}/>
+				</div>
 			</div>
 			)
   }

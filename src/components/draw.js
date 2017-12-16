@@ -16,6 +16,7 @@ export default class Draw extends Component {
 		this.handleOnTouchMove = this.handleOnTouchMove.bind(this);
 		this.handleOnDoubleClick = this.handleOnDoubleClick.bind(this);
 		this.updateDimensions = this.updateDimensions.bind(this);
+		this.cleanCanvas = this.cleanCanvas.bind(this);
 	}
 
 	updateDimensions() {
@@ -30,6 +31,10 @@ export default class Draw extends Component {
 	componentDidMount() {
 		this.updateDimensions();
 		window.addEventListener("resize", this.updateDimensions)
+	}
+
+	componentWillReceiveProps() {
+		this.cleanCanvas();
 	}
 
 	handleOnMouseDown() {
@@ -47,7 +52,7 @@ export default class Draw extends Component {
 			const ctx = myCanvas.getContext("2d");
 			ctx.beginPath();
 			ctx.arc(e.pageX - rect.x, e.pageY - rect.y, 10, 0, 2 * Math.PI);
-			ctx.fillStyle = "red";
+			ctx.fillStyle = "black";
 			ctx.fill();
 		}
 	}
@@ -77,16 +82,20 @@ export default class Draw extends Component {
 	}
 
 	handleOnDoubleClick() {
+		this.cleanCanvas();
+		this.props.incrementCounter();
+	}
+
+	cleanCanvas() {
 		const myCanvas = this.refs.myCanvas;
 		const ctx = myCanvas.getContext("2d");
 		const rect = myCanvas.getBoundingClientRect();
 		ctx.clearRect(0, 0, rect.width, rect.height)
-		this.props.incrementCounter();
 	}
 
 	render() {
 		return (
-			<React.Fragment className="canvas">
+			<React.Fragment>
 				<canvas height={this.state.canvasHeight} width={this.state.canvasWidth} ref="myCanvas"
 								onMouseDown={this.handleOnMouseDown}
 								onMouseUp={this.handleOnMouseUp}

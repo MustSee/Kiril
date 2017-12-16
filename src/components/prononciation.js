@@ -3,7 +3,7 @@ import React from 'react';
 export default class Prononciation extends React.Component {
 	render() {
 		return(
-			<div className="bottom">
+			<div>
 				{this.props.prononciation}
 			</div>
 		)
