@@ -4,27 +4,73 @@
     align-items : center;
     height : 100vh;
     width : 100%;
-    background-color : #568e9e;
+    background-color : #CCC;
     user-select : none;
+}
+
+.menu {
+    width : 30vw;
+    height : 7vh;
+    background-color : #519657;
 }
 
 .top {
     width : 30vw;
-    height : 15vh;
-    background-color : #ffe77f;
-    border-top : 2px solid #218072;
-    border-left : 2px solid #218072;
-    border-right : 2px solid #218072;
+    height : 13vh;
+    background-color : #81c784;
     display : flex;
+}
+
+canvas {
+    width : 30vw;
+    height : 52vh;
+    outline : none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    background-color : white;
+    cursor : pointer;
+}
+
+.learn {
+    width : 30vw;
+    height : 19 vh;
+}
+
+.learn .titre {
+    height : 4vh;
+    background-color : #007ac1;
+    color : white;
+    font-weight : bold;
+    display : flex;
+    align-items : center;
+}
+
+.prononciation, .mots {
+    width : 50%;
+    text-align : center;
+    cursor : pointer;
+}
+
+.learn .son {
+    height : 17vh;
+    background-color : #b2fab4;
+    display : flex;
+    flex-direction : column;
+    font-size : xx-large;
+    justify-content : center;
+    align-items : center;
+    padding-bottom : 5px;
+}
+
+.learn .explanation {
+    font-size : medium;
+    text-align : center;
+    width : 80%;
 }
 
 .bottom {
     width : 30vw;
-    height : 15vh;
-    background-color : #ffe77f;
-    border-bottom : 2px solid #218072;
-    border-left : 2px solid #218072;
-    border-right : 2px solid #218072;
+    height : 7vh;
+    background-color : #03a9f4;
     /* for the content */
     display : flex;
     justify-content : space-between;
@@ -32,98 +78,102 @@
     font-size : xx-large;
 }
 
-.back, .forth {
-    background-color : #64fff7;
-    padding: 25px 15px;
-    border-radius : 50%;
-    cursor : pointer;
-}
-
-canvas {
-    width : 30vw;
-    height : Calc(70vh - 4px);
-    outline : none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    background-color : white;
-    border : 2px solid #218072;
-    cursor : pointer;
+.wrapperAlphabet {
+    width : 100%;
+    display : flex;
+    align-items : center;
 }
 
 .alphabet {
-    width : 33%;
-    height : inherit;
-    background-color : violet;
+    width : 100%;
     display : flex;
     justify-content : center;
-    align-items : center;
-    font-size : xx-large;
+    align-items : baseline;
+    font-size : 400%;
+}
+
+.alphabet .lowercase {
+    font-size : 75%;
 }
 
 .counter {
-    width : 34%;
-    height : inherit;
-    background-color : lightcoral;
+    width : 30%;
     display : flex;
     justify-content : center;
     align-items : center;
-    font-size : xx-large;
+    font-size : x-large;
+}
+
+.back, .forth {
+    display : flex;
+    align-items : center;
+    cursor : pointer;
+    width : 35%;
+    height : inherit;
+    padding-left : 10px;
+}
+
+.forth {
+    justify-content : flex-end;
+    padding-right : 10px;
+    padding-left : 0px;
+}
+
+.menu {
+    display :flex;
+    align-items : center;
 }
 
 .backToHomepage {
     width : 33%;
     height : inherit;
-    background-color : cornsilk;
+    background : url("./images/menu.svg") no-repeat center center;
+    cursor : pointer;
+    outline : none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+.sound {
+    width : 34%;
+    height : inherit;
+}
+
+.fullScreen {
+    width : 33%;
+    height : 55%;
+    background : url("./images/fullscreen.svg") no-repeat center center;
+    cursor : pointer;
+    outline : none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 @media (max-width: 768px) and (orientation : portrait) {
+    .menu {
+        width : 100vw;
+    }
     .top {
         width : 100vw;
-        border : none;
-    }
-
-    .bottom {
-        width : 100vw;
-        border : none;
     }
 
     canvas {
         width : 100vw;
-        height : 70vh;
-        border : none;
-    }
-}
+        }
 
-@media (max-width: 768px) and (orientation : landscape) {
-    .global {
-        flex-direction : row;
-    }
-
-    .top, canvas, .bottom {
-        height : 100vh;
-        border : none;
-    }
-
-    .top {
-        flex-direction : column;
-        width : 15%;
-    }
-
-    canvas {
-        width : 70%;
+    .learn {
+        width : 100vw;
     }
 
     .bottom {
-        width : 15%;
-        display : flex;
-        flex-direction : column;
-        justify-content : space-around;
-    }
-
-    .counter {
-        font-size : x-large;
-    }
-
-    .alphabet, .counter, .backToHomepage {
-        width : 100%;
+        width : 100vw;
     }
 }
+
+@media (min-width: 769px) and (max-width: 1440px) {
+    .menu, .top, canvas, .learn, .bottom {
+        width : 60vh;
+    }
+}
+
+    @media (max-width: 768px) and (orientation : landscape) {
+        /* Configuration à revoir */
+    }

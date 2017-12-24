@@ -8,6 +8,8 @@ import Draw from './components/draw';
 import Forth from './components/forth';
 import HomePage from './components/backToHomepage';
 import Prononciation from './components/prononciation';
+import Sound from './components/sound';
+import FullScreen from './components/fullscreen';
 
 class App extends Component {
 	constructor(props) {
@@ -46,15 +48,24 @@ class App extends Component {
   	console.log(this.state.letters);
   	return(
 			<div className="global">
+				<div className="menu">
+					<HomePage/>
+					<Sound />
+					<FullScreen />
+				</div>
+
 				<div className="top">
 					<Alphabet letter={this.state.letters[this.state.counter].letter}/>
-					<Counter counter={this.state.counter} total={this.state.total}/>
-					<HomePage/>
 				</div>
+
 				<Draw incrementCounter={this.incrementCounter} counter={this.state.counter} />
+				<div className="learn">
+					<Prononciation prononciation={this.state.letters[this.state.counter]} />
+				</div>
+
 				<div className="bottom">
 					<Back backAndForth={this.backAndForth}/>
-					<Prononciation prononciation={this.state.letters[this.state.counter].prononciation} />
+					<Counter counter={this.state.counter} total={this.state.total}/>
 					<Forth backAndForth={this.backAndForth}/>
 				</div>
 			</div>

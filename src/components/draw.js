@@ -32,7 +32,7 @@ export default class Draw extends Component {
 
 	componentDidMount() {
 		this.updateDimensions();
-		window.addEventListener("resize", this.updateDimensions)
+		window.addEventListener("resize", this.updateDimensions);
 	}
 
 	componentWillReceiveProps() {
