@@ -35,6 +35,10 @@ export default class Draw extends Component {
 		window.addEventListener("resize", this.updateDimensions);
 	}
 
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.updateDimensions);
+	}
+
 	componentWillReceiveProps() {
 		this.cleanCanvas();
 	}
