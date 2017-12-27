@@ -1,11 +1,13 @@
 import React, {Component, Fragment} from 'react';
 import bulgare from './../datas/bulgarian/alphabet';
 import Letters from './alphabet/letters';
-import Back from './alphabet/back';
-import Counter from './alphabet/counter';
 import Draw from './alphabet/draw';
-import Forth from './alphabet/forth';
-import Prononciation from './alphabet/prononciation';
+
+import BottomNav from './alphabet/bottomNav';
+import Content from './alphabet/content';
+import {Card, CardText} from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
+
 
 class Alphabet extends Component {
 	constructor(props) {
@@ -44,20 +46,23 @@ class Alphabet extends Component {
   	console.log(this.state.letters);
   	return(
 			<Fragment>
-				<div className="top">
-					<Letters letter={this.state.letters[this.state.counter].letter}/>
-				</div>
+				<Card style={{"width" : "100vw"}}>
+					<CardText
+						style={{
+							textAlign : "center",
+							fontSize : "xx-large",
+							paddingTop : 10,
+							paddingBottom : 10
+						}}>
+						<Letters letter={this.state.letters[this.state.counter].letter}/>
+					</CardText>
+					<Divider />
+						<Draw incrementCounter={this.incrementCounter} counter={this.state.counter} />
+				</Card>
 
-				<Draw incrementCounter={this.incrementCounter} counter={this.state.counter} />
-				<div className="learn">
-					<Prononciation prononciation={this.state.letters[this.state.counter]} />
-				</div>
+				<Content prononciation={this.state.letters[this.state.counter]}/>
 
-				<div className="bottom">
-					<Back backAndForth={this.backAndForth}/>
-					<Counter counter={this.state.counter} total={this.state.total}/>
-					<Forth backAndForth={this.backAndForth}/>
-				</div>
+				<BottomNav backAndForth={this.backAndForth} counter={this.state.counter} total={this.state.total}/>
 			</Fragment>
 			)
   }

@@ -1,155 +1,29 @@
 .global {
-    display : flex;
-    flex-direction : column;
-    align-items : center;
-    height : 100vh;
-    width : 100%;
-    background-color : #CCC;
+    /*display : flex;*/
+    /*flex-direction : column;*/
+    /*align-items : center;*/
+    /*height : 100vh;*/
+    /*width : 100%;*/
     user-select : none;
+    height : 100vh;
 }
 
-.menu {
-    width : 30vw;
-    height : 7vh;
-    background-color : #519657;
-}
-
-.top {
-    width : 30vw;
-    height : 13vh;
-    background-color : #81c784;
-    display : flex;
-}
+/*64 + 58 + 48 + 48 + 52vh + 4px du bas du canvas :*/
 
 canvas {
-    width : 30vw;
-    height : 52vh;
+    width : 100vw;
+    height : 45vh;
     outline : none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     background-color : white;
     cursor : pointer;
 }
 
-.learn {
-    width : 30vw;
-    height : 19 vh;
-}
-
-.learn .titre {
-    height : 4vh;
-    background-color : #007ac1;
-    color : white;
-    font-weight : bold;
-    display : flex;
-    align-items : center;
-}
-
-.prononciation, .mots {
-    width : 50%;
-    text-align : center;
-    cursor : pointer;
-    outline : none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-}
-
-.learn .son {
-    height : 17vh;
-    background-color : #b2fab4;
+.content {
+    height : calc(55vh - 222px);
     display : flex;
     flex-direction : column;
-    font-size : xx-large;
     justify-content : center;
-    align-items : center;
-    padding-bottom : 5px;
-}
-
-.learn .explanation {
-    font-size : medium;
-    text-align : center;
-    width : 80%;
-}
-
-.bottom {
-    width : 30vw;
-    height : 7vh;
-    background-color : #03a9f4;
-    /* for the content */
-    display : flex;
-    justify-content : space-between;
-    align-items : center;
-    font-size : xx-large;
-}
-
-.wrapperAlphabet {
-    width : 100%;
-    display : flex;
-    align-items : center;
-}
-
-.alphabet {
-    width : 100%;
-    display : flex;
-    justify-content : center;
-    align-items : baseline;
-    font-size : 400%;
-}
-
-.alphabet .lowercase {
-    font-size : 75%;
-}
-
-.counter {
-    width : 30%;
-    display : flex;
-    justify-content : center;
-    align-items : center;
-    font-size : x-large;
-}
-
-.back, .forth {
-    display : flex;
-    align-items : center;
-    cursor : pointer;
-    width : 35%;
-    height : inherit;
-    padding-left : 10px;
-}
-
-.forth {
-    justify-content : flex-end;
-    padding-right : 10px;
-    padding-left : 0px;
-}
-
-.menu {
-    display :flex;
-    align-items : center;
-}
-
-.backToHomepage {
-    width : 33%;
-    height : inherit;
-    background : url("./images/menu.svg") no-repeat center center;
-    cursor : pointer;
-    outline : none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-}
-
-.insideLink {
-    height : 100%
-}
-.sound {
-    width : 34%;
-    height : inherit;
-}
-
-.fullScreen {
-    width : 33%;
-    height : 55%;
-    background : url("./images/fullscreen.svg") no-repeat center center;
-    cursor : pointer;
-    outline : none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 /* HOME */
@@ -191,36 +65,4 @@ canvas {
 }
 
 .home_liens a:hover {
-
 }
-
-@media (max-width: 768px) and (orientation : portrait) {
-    .menu {
-        width : 100vw;
-    }
-    .top {
-        width : 100vw;
-    }
-
-    canvas {
-        width : 100vw;
-        }
-
-    .learn {
-        width : 100vw;
-    }
-
-    .bottom {
-        width : 100vw;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1440px) {
-    .menu, .top, canvas, .learn, .bottom {
-        width : 100vw;
-    }
-}
-
-    @media (max-width: 768px) and (orientation : landscape) {
-        /* Configuration à revoir */
-    }
