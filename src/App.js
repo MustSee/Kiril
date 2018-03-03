@@ -5,8 +5,6 @@ import Main from './components/main';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
-
-
 	render() {
 		return(
 			<MuiThemeProvider>
@@ -18,5 +16,4 @@ class App extends Component {
 		)
 	}
 }
-
 export default App;
