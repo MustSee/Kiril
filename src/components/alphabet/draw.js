@@ -10,6 +10,7 @@ export default class Draw extends Component {
 			pageX : "",
 			pageY : ""
 		}
+		
 		this.handleOnMouseDown = this.handleOnMouseDown.bind(this);
 		this.handleOnMouseUp = this.handleOnMouseUp.bind(this);
 		this.handleOnMouseMove = this.handleOnMouseMove.bind(this);
@@ -123,7 +124,7 @@ export default class Draw extends Component {
 
 	render() {
 		return (
-			<React.Fragment>
+			<div className="surroundingCanvas" ref="canvasDiv">
 				<canvas height={this.state.canvasHeight} width={this.state.canvasWidth} ref="myCanvas"
 								onMouseDown={this.handleOnMouseDown}
 								onMouseUp={this.handleOnMouseUp}
@@ -134,7 +135,7 @@ export default class Draw extends Component {
 								onDoubleClick={this.handleOnDoubleClick}
 				>
 				</canvas>
-			</React.Fragment>
+			</div>
 		)
 	}
 }

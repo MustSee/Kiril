@@ -46,7 +46,7 @@ class Alphabet extends Component {
   	console.log(this.state.letters);
   	return(
 			<Fragment>
-				<Card style={{"width" : "100vw"}}>
+				<Card>
 					<CardText
 						style={{
 							textAlign : "center",
@@ -59,7 +59,6 @@ class Alphabet extends Component {
 					<Divider />
 						<Draw incrementCounter={this.incrementCounter} counter={this.state.counter} />
 				</Card>
-
 				<Content prononciation={this.state.letters[this.state.counter]}/>
 
 				<BottomNav backAndForth={this.backAndForth} counter={this.state.counter} total={this.state.total}/>

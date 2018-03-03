@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Drawer from 'material-ui/Drawer';
+import Divider from 'material-ui/Divider';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
@@ -54,6 +55,8 @@ export default class Header extends Component {
 					open={this.state.open}
 					onRequestChange={(open) => this.setState({open})}
 				>
+					<div className="titleDrawer"> KIRIL</div>
+					<Divider />
 					<Link to='/'>
 						<MenuItem onClick={this.handleClose}>Home</MenuItem>
 					</Link>
@@ -63,7 +66,7 @@ export default class Header extends Component {
 					<Link to='/games'>
 						<MenuItem onClick={this.handleClose}>Games</MenuItem>
 					</Link>
-					<Link to='/games'>
+					<Link to='/culture'>
 					<MenuItem onClick={this.handleClose}>Culture</MenuItem>
 					</Link>
 				</Drawer>

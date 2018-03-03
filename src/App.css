@@ -12,7 +12,7 @@
 
 canvas {
     width : 100vw;
-    height : 45vh;
+    height : 46vh;
     outline : none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     background-color : white;
@@ -20,10 +20,31 @@ canvas {
 }
 
 .content {
-    height : calc(55vh - 222px);
+    height : calc(54vh - 218px);
     display : flex;
     flex-direction : column;
     justify-content : center;
+}
+
+a {
+    text-decoration : none;
+}
+
+.titleDrawer {
+    height : 10vh;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    background-color : rgb(0, 188, 212);
+    color : white;
+    font-size : x-large;
+    font-style: italic;
+}
+
+/*Thanks to this property, no margin-bottom after the canvas*/
+.surroundingCanvas {
+    height : 46vh;
+    background-image : url("img/gesture.png");
 }
 
 /* HOME */
