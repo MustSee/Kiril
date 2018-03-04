@@ -3,8 +3,8 @@
   "name": "Kiril - learn a language",
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "theme_color": "#FFF",
+  "background_color": "#00BCD4",
   "icons": [
     {
       "src": "img/icons/android-icon-36x36.png",
