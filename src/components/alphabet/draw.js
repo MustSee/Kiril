@@ -9,8 +9,7 @@ export default class Draw extends Component {
 			canvasHeight: "",
 			pageX : "",
 			pageY : ""
-		}
-		
+		};
 		this.handleOnMouseDown = this.handleOnMouseDown.bind(this);
 		this.handleOnMouseUp = this.handleOnMouseUp.bind(this);
 		this.handleOnMouseMove = this.handleOnMouseMove.bind(this);

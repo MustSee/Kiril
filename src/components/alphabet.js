@@ -16,7 +16,7 @@ class Alphabet extends Component {
 			letters : bulgare,
 			counter : 0,
 			total : bulgare.length
-		}
+		};
 		this.incrementCounter = this.incrementCounter.bind(this);
 		this.backAndForth = this.backAndForth.bind(this);
 	}
