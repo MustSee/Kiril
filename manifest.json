@@ -3,7 +3,7 @@
   "name": "Kiril - learn a language",
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#FFF",
+  "theme_color": "#000000",
   "background_color": "#00BCD4",
   "icons": [
     {
