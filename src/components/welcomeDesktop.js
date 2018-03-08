@@ -12,7 +12,7 @@ export default class WelcomeDesktop extends React.Component {
               Kiril est une application qui permet d'apprendre l'alphabet bulgare.
             </div>
             <div className="explanation">
-              L'application possède du contenu interactif et a été spécialement développée pour fonctionner sur les
+              L'application possède du contenu interactif et a été spécialement conçue pour fonctionner sur les
               smartphones et les tablettes.
               <br /><br />
               Pour profiter pleinement de l'application, ouvrez la sur votre mobile/tablette !

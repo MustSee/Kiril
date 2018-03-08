@@ -13,9 +13,9 @@ class Alphabet extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			letters : bulgare,
-			counter : 0,
-			total : bulgare.length
+			letters: bulgare,
+			counter: 0,
+			total: bulgare.length
 		};
 		this.incrementCounter = this.incrementCounter.bind(this);
 		this.backAndForth = this.backAndForth.bind(this);
@@ -23,48 +23,49 @@ class Alphabet extends Component {
 
 	incrementCounter() {
 		let count = this.state.counter;
-		if(count + 1 >= this.state.total) {
+		if (count + 1 >= this.state.total) {
 			count = -1;
 		}
-		this.setState ({
-			counter : count + 1
+		this.setState({
+			counter: count + 1
 		});
 	}
 
 	backAndForth(val) {
 		let count = this.state.counter;
-		if(count + val >= this.state.total) {
-			this.setState({counter : 0});
+		if (count + val >= this.state.total) {
+			this.setState({counter: 0});
 		} else if (count + val <= 0) {
-			this.setState({ counter : 0})
+			this.setState({counter: 0})
 		} else {
-			this.setState({ counter : count + val})
+			this.setState({counter: count + val})
 		}
 	}
 
-  render() {
-  	console.log(this.state.letters);
-  	return(
+	render() {
+		console.log(this.state.letters);
+		return (
 			<Fragment>
 				<Card>
 					<CardText
 						style={{
-							textAlign : "center",
-							fontSize : "xx-large",
-							paddingTop : 10,
-							paddingBottom : 10
+							textAlign: "center",
+							fontSize: "xx-large",
+							paddingTop: 10,
+							paddingBottom: 10
 						}}>
 						<Letters letter={this.state.letters[this.state.counter].letter}/>
 					</CardText>
-					<Divider />
-						<Draw incrementCounter={this.incrementCounter} counter={this.state.counter} />
+					<Divider/>
+					<Draw incrementCounter={this.incrementCounter} counter={this.state.counter}
+								letter={this.state.letters[this.state.counter].letter}/>
 				</Card>
 				<Content prononciation={this.state.letters[this.state.counter]}/>
 
 				<BottomNav backAndForth={this.backAndForth} counter={this.state.counter} total={this.state.total}/>
 			</Fragment>
-			)
-  }
+		)
+	}
 }
 
 export default Alphabet;

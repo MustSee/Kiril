@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+let Tesseract = window.Tesseract;
 
 export default class Draw extends Component {
 	constructor(props) {
@@ -7,8 +8,9 @@ export default class Draw extends Component {
 			modeDessin: false,
 			canvasWidth: "",
 			canvasHeight: "",
-			pageX : "",
-			pageY : ""
+			pageX: "",
+			pageY: "",
+			image: "",
 		};
 		this.handleOnMouseDown = this.handleOnMouseDown.bind(this);
 		this.handleOnMouseUp = this.handleOnMouseUp.bind(this);
@@ -19,6 +21,7 @@ export default class Draw extends Component {
 		this.handleOnDoubleClick = this.handleOnDoubleClick.bind(this);
 		this.updateDimensions = this.updateDimensions.bind(this);
 		this.cleanCanvas = this.cleanCanvas.bind(this);
+		this.checkCharacter = this.checkCharacter.bind(this);
 	}
 
 	updateDimensions() {
@@ -48,7 +51,7 @@ export default class Draw extends Component {
 	}
 
 	handleOnMouseUp() {
-		this.setState({modeDessin: false, pageX : "", pageY : ""})
+		this.setState({modeDessin: false, pageX: "", pageY: ""})
 	}
 
 	handleOnMouseMove(e) {
@@ -57,25 +60,44 @@ export default class Draw extends Component {
 			const rect = myCanvas.getBoundingClientRect();
 			const ctx = myCanvas.getContext("2d");
 
-			if(this.state.pageX !== "") {
+			if (this.state.pageX !== "") {
 				ctx.beginPath();
 				ctx.moveTo(this.state.pageX - rect.x, this.state.pageY - rect.y);
 				ctx.lineTo(e.pageX - rect.x, e.pageY - rect.y);
 				ctx.lineWidth = 10;
 				ctx.stroke();
 			}
-			this.setState({pageX : e.pageX, pageY : e.pageY});
+			this.setState({pageX: e.pageX, pageY: e.pageY});
 		}
 	}
 
 	handleOnTouchStart() {
 		console.log('handleOnTouchStart');
-		this.setState({modeDessin : true});
+		this.setState({modeDessin: true});
+	}
+
+	checkCharacter() {
+		let letters = this.props.letter.uppercase + this.props.letter.lowercase;
+		console.log('tesseract', letters);
+		Tesseract.recognize(this.state.image, {
+			lang: 'bul',
+			tessedit_char_whitelist: letters,
+		})
+			.then( result => {
+				console.log(result.confidence);
+				if(result.confidence > 60) {
+					setTimeout(() => this.handleOnDoubleClick(), 1000);
+				}
+			});
 	}
 
 	handleOnTouchEnd() {
 		console.log('touchend');
-		this.setState({modeDessin : false, pageX : "", pageY : ""});
+		let canvas = this.refs.myCanvas;
+		let image = canvas.getContext('2d');
+		this.setState({modeDessin: false, pageX: "", pageY: "", image: image}, () => {
+			this.checkCharacter();
+		});
 	}
 
 	handleOnTouchMove(e) {
@@ -98,14 +120,14 @@ export default class Draw extends Component {
 			// ctx.fillStyle = "black";
 			// ctx.fill();
 
-			if(this.state.pageX !== "") {
+			if (this.state.pageX !== "") {
 				ctx.beginPath();
 				ctx.moveTo(this.state.pageX - rect.x, this.state.pageY - rect.y);
 				ctx.lineTo(pageX - rect.x, pageY - rect.y);
 				ctx.lineWidth = 10;
 				ctx.stroke();
 			}
-			this.setState({pageX : pageX, pageY : pageY});
+			this.setState({pageX: pageX, pageY: pageY});
 		}
 	}
 

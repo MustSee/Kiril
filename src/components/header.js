@@ -63,12 +63,12 @@ export default class Header extends Component {
 					<Link to='/alphabet'>
 						<MenuItem onClick={this.handleClose}>Alphabet</MenuItem>
 					</Link>
-					<Link to='/games'>
-						<MenuItem onClick={this.handleClose}>Games</MenuItem>
-					</Link>
-					<Link to='/culture'>
-					<MenuItem onClick={this.handleClose}>Culture</MenuItem>
-					</Link>
+					{/*<Link to='/games'>*/}
+						{/*<MenuItem onClick={this.handleClose}>Games</MenuItem>*/}
+					{/*</Link>*/}
+					{/*<Link to='/culture'>*/}
+					{/*<MenuItem onClick={this.handleClose}>Culture</MenuItem>*/}
+					{/*</Link>*/}
 				</Drawer>
 			</React.Fragment>
 		);

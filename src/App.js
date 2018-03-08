@@ -25,9 +25,8 @@ class App extends Component {
   }
 
   render() {
-    console.log('this.state.innerWidth', this.state.innerWidth);
     let page = null;
-    if (this.state.innerWidth >= 990 || window.innerWidth >= 990) {
+    if (this.state.innerWidth >= 1025 || window.innerWidth >= 1025) {
       page = <WelcomeDesktop />
     }
     return (
