@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Clear from 'material-ui/svg-icons/content/clear';
+
 let Tesseract = window.Tesseract;
 
 export default class Draw extends Component {
@@ -11,6 +13,7 @@ export default class Draw extends Component {
 			pageX: "",
 			pageY: "",
 			image: "",
+			idTimeOut: 0,
 		};
 		this.handleOnMouseDown = this.handleOnMouseDown.bind(this);
 		this.handleOnMouseUp = this.handleOnMouseUp.bind(this);
@@ -79,16 +82,22 @@ export default class Draw extends Component {
 	checkCharacter() {
 		let letters = this.props.letter.uppercase + this.props.letter.lowercase;
 		console.log('tesseract', letters);
-		Tesseract.recognize(this.state.image, {
-			lang: 'bul',
-			tessedit_char_whitelist: letters,
-		})
-			.then( result => {
-				console.log(result.confidence);
-				if(result.confidence > 60) {
-					setTimeout(() => this.handleOnDoubleClick(), 1000);
-				}
-			});
+		// In case the CDN doesn't work, we don't call Tesseract
+		if(Tesseract) {
+			console.log('inside Tesseract');
+			Tesseract.recognize(this.state.image, {
+				lang: 'bul',
+				tessedit_char_whitelist: letters,
+			})
+				.then( result => {
+					console.log(result.confidence);
+					if(result.confidence > 70) {
+						let idTimeOut = setTimeout(() => this.handleOnDoubleClick(), 300);
+						console.log('idTimeOut', idTimeOut);
+						this.setState({idTimeOut : idTimeOut});
+					}
+				});
+		}
 	}
 
 	handleOnTouchEnd() {
@@ -132,8 +141,13 @@ export default class Draw extends Component {
 	}
 
 	handleOnDoubleClick() {
+		console.log('inside double click');
 		this.cleanCanvas();
 		this.props.incrementCounter();
+		if(this.state.idTimeOut !== 0) {
+			clearTimeout(this.state.idTimeOut);
+			this.setState({idTimeOut: ''})
+		}
 	}
 
 	cleanCanvas() {
@@ -154,8 +168,8 @@ export default class Draw extends Component {
 								onTouchEnd={this.handleOnTouchEnd}
 								onTouchMove={this.handleOnTouchMove}
 								onDoubleClick={this.handleOnDoubleClick}
-				>
-				</canvas>
+				/>
+				<div className="rubber"><Clear onTouchStart={this.cleanCanvas} onMouseDown={this.cleanCanvas} /></div>
 			</div>
 		)
 	}

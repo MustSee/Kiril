@@ -45,6 +45,13 @@ a {
 .surroundingCanvas {
     height : 46vh;
     background-image : url("img/gesture.png");
+    position : relative;
+}
+
+.rubber {
+    position : absolute;
+    bottom : 10px;
+    left : 10px;
 }
 
 /* HOME */
