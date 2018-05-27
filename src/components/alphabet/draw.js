@@ -95,8 +95,7 @@ export default class Draw extends Component {
                       const data = {
                         date : moment().format('LLLL'),
                       };
-                      console.log(data);
-                      dateTimeRef.push(data).then(response => console.log(response)).catch(error => console.log(error));
+                      dateTimeRef.push(data);
 						let idTimeOut = setTimeout(() => this.handleOnDoubleClick(), 300);
 						this.setState({idTimeOut : idTimeOut});
 					}
