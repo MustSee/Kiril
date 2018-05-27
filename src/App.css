@@ -78,22 +78,6 @@ a {
     /*justify-content : space-around;*/
 }
 
-.home_liens a {
-    text-decoration : none;
-    color: white;
-    text-transform : capitalize;
-    padding : 5vw 10vw ;
-    background-color : rgb(0, 188, 212);
-    border-radius: 15px;
-}
-
-.home_liens a:visited {
-    color: #FFF;
-}
-
-.home_liens a:hover {
-}
-
 /* DESKTOP MESSAGE */
 
 .welcome {

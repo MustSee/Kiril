@@ -45,13 +45,13 @@ export default class Content extends React.Component {
 					index={this.state.slideIndex}
 					onChangeIndex={this.handleChange}
 				>
-					<div className="content" onTouchStart={this.playSound}>
+					<div className="content">
 						<div style={styles.headline}>[ {this.props.prononciation.prononciation.son} ]</div>
 						<div style={styles.slide}>
 							{this.props.prononciation.prononciation.explanation}
 						</div>
 					</div>
-					<div className="content" onTouchStart={this.playSound}>
+					<div className="content">
 						<div style={styles.headline}>
 							{this.props.prononciation.words[0]} - {this.props.prononciation.words[1]}
 						</div>
