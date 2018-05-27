@@ -43,7 +43,6 @@ class Alphabet extends Component {
 	}
 
 	render() {
-		console.log(this.state.letters);
 		return (
 			<Fragment>
 				<Card>
@@ -60,7 +59,7 @@ class Alphabet extends Component {
 					<Draw incrementCounter={this.incrementCounter} counter={this.state.counter}
 								letter={this.state.letters[this.state.counter].letter}/>
 				</Card>
-				<Content prononciation={this.state.letters[this.state.counter]}/>
+				<Content prononciation={this.state.letters[this.state.counter]} counter={this.state.counter}/>
 
 				<BottomNav backAndForth={this.backAndForth} counter={this.state.counter} total={this.state.total}/>
 			</Fragment>

@@ -9,7 +9,6 @@ import AppBar from 'material-ui/AppBar';
 import screenfull from 'screenfull';
 import { Link } from 'react-router-dom';
 
-
 export default class Header extends Component {
 	constructor(props) {
 		super(props);
@@ -22,8 +21,6 @@ export default class Header extends Component {
 	handleClose = () => this.setState({open: false});
 
 	handleFullScreen() {
-		console.log('handleFullScreen');
-		console.log(screenfull);
 		if (screenfull.enabled) {
 			screenfull.toggle();
 		}
@@ -63,12 +60,6 @@ export default class Header extends Component {
 					<Link to='/alphabet'>
 						<MenuItem onClick={this.handleClose}>Alphabet</MenuItem>
 					</Link>
-					{/*<Link to='/games'>*/}
-						{/*<MenuItem onClick={this.handleClose}>Games</MenuItem>*/}
-					{/*</Link>*/}
-					{/*<Link to='/culture'>*/}
-					{/*<MenuItem onClick={this.handleClose}>Culture</MenuItem>*/}
-					{/*</Link>*/}
 				</Drawer>
 			</React.Fragment>
 		);
