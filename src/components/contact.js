@@ -84,12 +84,14 @@ export default class Home extends React.Component {
             onChange={this.handleChange}
             errorText={this.state.errorTextName}
             onFocus={() => this.stopDisplayError('errorTextName')}
+            spellCheck="false"
           />
           <TextField
             floatingLabelText="Your mail for an answer"
             value={this.state.mail}
             name="mail"
             onChange={this.handleChange}
+            spellCheck="false"
           />
           <TextField
             floatingLabelText="What's the matter ?"
