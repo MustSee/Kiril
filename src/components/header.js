@@ -27,41 +27,42 @@ export default class Header extends Component {
 	}
 
 	render() {
-		return (
-			<React.Fragment>
-				<AppBar
-					title="Kiril"
-					iconElementLeft={
-						<IconButton
-							onClick={this.handleToggle}
-						>
-							<Menu/>
-						</IconButton>
-					}
-					iconElementRight={
-						<IconButton
-							onClick={this.handleFullScreen}
-						>
-							<FullScreen/>
-						</IconButton>
-					}
-				/>
-				<Drawer
-					docked={false}
-					width={200}
-					open={this.state.open}
-					onRequestChange={(open) => this.setState({open})}
-				>
-					<div className="titleDrawer"> KIRIL</div>
-					<Divider />
-					<Link to='/'>
-						<MenuItem onClick={this.handleClose}>Home</MenuItem>
-					</Link>
-					<Link to='/alphabet'>
-						<MenuItem onClick={this.handleClose}>Alphabet</MenuItem>
-					</Link>
-				</Drawer>
-			</React.Fragment>
-		);
+      return <React.Fragment>
+        <AppBar
+          title="Kiril"
+          iconElementLeft={
+            <IconButton
+              onClick={this.handleToggle}
+            >
+              <Menu />
+            </IconButton>
+          }
+          iconElementRight={
+            <IconButton
+              onClick={this.handleFullScreen}
+            >
+              <FullScreen />
+            </IconButton>
+          }
+        />
+        <Drawer
+          docked={false}
+          width={200}
+          open={this.state.open}
+          onRequestChange={(open) => this.setState({ open })}
+        >
+          <div className="titleDrawer"> KIRIL</div>
+          <Divider />
+          <Link to='/'>
+            <MenuItem onClick={this.handleClose}>Home</MenuItem>
+          </Link>
+          <Link to='/alphabet'>
+            <MenuItem onClick={this.handleClose}>Alphabet</MenuItem>
+          </Link>
+          <Link to='/contact'>
+            <MenuItem onClick={this.handleClose}>Contact</MenuItem>
+          </Link>
+        </Drawer>
+      </React.Fragment>;
 	}
 }
