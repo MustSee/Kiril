@@ -4,8 +4,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^5.0.4",
     "jest-cli": "^23.0.0-alpha.0",
     "material-ui": "^0.20.0",
+    "moment": "^2.22.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",

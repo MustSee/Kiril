@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import moment from 'moment';
+import firebase from './../../conf/firebase';
 import Clear from 'material-ui/svg-icons/content/clear';
 import Button from 'material-ui/FloatingActionButton';
 
@@ -89,6 +91,12 @@ export default class Draw extends Component {
 			})
 				.then( result => {
 					if(result.confidence > 60) {
+                      const dateTimeRef = firebase.database().ref('dateTime');
+                      const data = {
+                        date : moment().format('LLLL'),
+                      };
+                      console.log(data);
+                      dateTimeRef.push(data).then(response => console.log(response)).catch(error => console.log(error));
 						let idTimeOut = setTimeout(() => this.handleOnDoubleClick(), 300);
 						this.setState({idTimeOut : idTimeOut});
 					}
