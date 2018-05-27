@@ -59,7 +59,7 @@ export default class Home extends React.Component {
         });
     } else {
       !this.state.name ? this.setState({ errorTextName: 'This field is required.'}) : null;
-      this.state.subject < 2 ? this.setState({ errorTextSubject: 'This field is required.'}) : null;
+      this.state.subject.length < 3 ? this.setState({ errorTextSubject: 'This field is required.'}) : null;
       }
     };
 
@@ -101,7 +101,8 @@ export default class Home extends React.Component {
             rowsMax={2}
             errorText={this.state.errorTextSubject}
             onFocus={() => this.stopDisplayError('errorTextSubject')}
-          />
+            spellCheck="false"
+        />
           <RaisedButton label="Submit" primary={true} style={style} onClick={this.handleForm} />
         </div>
         {this.state.toastr ? <Toastr message={this.state.toastrMessage} showToastr={this.showToastr} /> : null}
