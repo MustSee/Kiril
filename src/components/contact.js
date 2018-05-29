@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
-  margin: 20,
+  margin: 30,
 };
 
 export default class Home extends React.Component {
@@ -59,7 +59,7 @@ export default class Home extends React.Component {
         });
     } else {
       !this.state.name ? this.setState({ errorTextName: 'This field is required.'}) : null;
-      this.state.subject.length < 3 ? this.setState({ errorTextSubject: 'This field is required.'}) : null;
+      this.state.subject.length < 3 ? this.setState({ errorTextSubject: 'This field requires a 3 chars minimum text.'}) : null;
       }
     };
 
