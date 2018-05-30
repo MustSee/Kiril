@@ -4,7 +4,7 @@ export default class Toastr extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.showToastr(false);
-    }, 2000);
+    }, this.props.timeLength);
   }
 
   render() {

@@ -107,7 +107,7 @@ export default class Home extends React.Component {
         />
           <RaisedButton label="Submit" primary={true} style={style} onClick={this.handleForm} />
         </div>
-        {this.state.toastr ? <Toastr message={this.state.toastrMessage} showToastr={this.showToastr} /> : null}
+        {this.state.toastr ? <Toastr message={this.state.toastrMessage} timeLength={2000} showToastr={this.showToastr} /> : null}
       </Fragment>
     )
   }
