@@ -17,6 +17,10 @@ export default class Draw extends Component {
       pageY: "",
       image: "",
       idTimeOut: 0,
+      attemptsNbr: 0,
+      resultConfidence: 0,
+      isCharRecognized: false,
+      isDrawn: false,
     };
     this.handleOnMouseDown = this.handleOnMouseDown.bind(this);
     this.handleOnMouseUp = this.handleOnMouseUp.bind(this);
@@ -73,7 +77,7 @@ export default class Draw extends Component {
         ctx.lineWidth = 10;
         ctx.stroke();
       }
-      this.setState({ pageX: e.pageX, pageY: e.pageY });
+      this.setState({ pageX: e.pageX, pageY: e.pageY, isDrawn: true });
     }
   }
 
@@ -82,6 +86,7 @@ export default class Draw extends Component {
   }
 
   checkCharacter() {
+    console.log('this.state.isDrawn', this.state.isDrawn);
     let letters = this.props.letter.uppercase + this.props.letter.lowercase;
     // In case the CDN doesn't work, we don't call Tesseract
     if (Tesseract) {
@@ -90,12 +95,27 @@ export default class Draw extends Component {
         tessedit_char_whitelist: letters,
       })
         .then(result => {
-          if (result.confidence > 60) {
-            const dateTimeRef = firebase.database().ref('');
-            const data = {
+          console.log('result.confidence', result.confidence);
+          if (this.state.isDrawn && result.confidence < 60 && result.confidence > 2) {
+              this.setState({
+                // Remettre le compteur à 0 après.
+                attemptsNbr: this.state.attemptsNbr + 1,
+                // Après, diviser le nombre total par le nombre d'attempts
+                resultConfidence: this.state.resultConfidence + result.confidence,
+                isDrawn: false,
+              });
+              console.log('attemptsNbr', this.state.attemptsNbr, 'resultConfidence', this.state.resultConfidence);
+          } else if (result.confidence > 60) {
+            this.setState({isCharRecognized: true});
+            const TesseractRecognition = firebase.database().ref('tesseract_recognition');
+            const payload = {
+              uppercase: this.props.letter.uppercase,
+              lowercase: this.props.letter.lowercase,
+              resultConfidence: result.confidence,
               date: moment().format('LLLL'),
             };
-            dateTimeRef.push(data);
+            console.log('payload', payload);
+            TesseractRecognition.push(payload);
             let idTimeOut = setTimeout(() => this.handleOnDoubleClick(), 300);
             this.setState({ idTimeOut: idTimeOut });
           }
@@ -126,7 +146,7 @@ export default class Draw extends Component {
         ctx.lineWidth = 10;
         ctx.stroke();
       }
-      this.setState({ pageX: pageX, pageY: pageY });
+      this.setState({ pageX: pageX, pageY: pageY, isDrawn: true });
     }
   }
 
@@ -139,7 +159,29 @@ export default class Draw extends Component {
     }
   }
 
+  logIfCharWasNotRecognized = (uppercase, lowercase, resultConfidence, attemptsNbr) => {
+      const CharNotRecognized = firebase.database().ref('char_not_recognized');
+      const payload = {
+        charNotReconUpper: uppercase,
+        charNotReconLower: lowercase,
+        resultConfidence: resultConfidence / attemptsNbr,
+        date: moment().format('LLLL'),
+      };
+      console.log('payload', payload);
+      CharNotRecognized.push(payload);
+  };
+
   cleanCanvas() {
+    console.log('!this.state.isCharRecognized', !this.state.isCharRecognized, 'this.state.attemptsNbr', this.state.attemptsNbr);
+    if(!this.state.isCharRecognized && this.state.attemptsNbr > 0) {
+      this.logIfCharWasNotRecognized(this.props.letter.uppercase, this.props.letter.lowercase, this.state.resultConfidence, this.state.attemptsNbr);
+    };
+    this.setState({
+      resultConfidence: 0,
+      attemptsNbr: 0,
+      isDrawn: false,
+      isCharRecognized: false,
+    });
     const myCanvas = this.refs.myCanvas;
     const ctx = myCanvas.getContext("2d");
     const rect = myCanvas.getBoundingClientRect();
