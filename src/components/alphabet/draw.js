@@ -86,7 +86,7 @@ export default class Draw extends Component {
   }
 
   checkCharacter() {
-    console.log('this.state.isDrawn', this.state.isDrawn);
+    // console.log('this.state.isDrawn', this.state.isDrawn);
     let letters = this.props.letter.uppercase + this.props.letter.lowercase;
     // In case the CDN doesn't work, we don't call Tesseract
     if (Tesseract) {
@@ -95,7 +95,7 @@ export default class Draw extends Component {
         tessedit_char_whitelist: letters,
       })
         .then(result => {
-          console.log('result.confidence', result.confidence);
+          // console.log('result.confidence', result.confidence);
           if (this.state.isDrawn && result.confidence < 60 && result.confidence > 2) {
               this.setState({
                 // Remettre le compteur à 0 après.
@@ -104,7 +104,7 @@ export default class Draw extends Component {
                 resultConfidence: this.state.resultConfidence + result.confidence,
                 isDrawn: false,
               });
-              console.log('attemptsNbr', this.state.attemptsNbr, 'resultConfidence', this.state.resultConfidence);
+              // console.log('attemptsNbr', this.state.attemptsNbr, 'resultConfidence', this.state.resultConfidence);
           } else if (result.confidence > 60) {
             this.setState({isCharRecognized: true});
             const TesseractRecognition = firebase.database().ref('tesseract_recognition');
@@ -114,7 +114,7 @@ export default class Draw extends Component {
               resultConfidence: result.confidence,
               date: moment().format('LLLL'),
             };
-            console.log('payload', payload);
+            // console.log('payload', payload);
             TesseractRecognition.push(payload);
             let idTimeOut = setTimeout(() => this.handleOnDoubleClick(), 300);
             this.setState({ idTimeOut: idTimeOut });
@@ -167,12 +167,12 @@ export default class Draw extends Component {
         resultConfidence: resultConfidence / attemptsNbr,
         date: moment().format('LLLL'),
       };
-      console.log('payload', payload);
+      // console.log('payload', payload);
       CharNotRecognized.push(payload);
   };
 
   cleanCanvas() {
-    console.log('!this.state.isCharRecognized', !this.state.isCharRecognized, 'this.state.attemptsNbr', this.state.attemptsNbr);
+    // console.log('!this.state.isCharRecognized', !this.state.isCharRecognized, 'this.state.attemptsNbr', this.state.attemptsNbr);
     if(!this.state.isCharRecognized && this.state.attemptsNbr > 0) {
       this.logIfCharWasNotRecognized(this.props.letter.uppercase, this.props.letter.lowercase, this.state.resultConfidence, this.state.attemptsNbr);
     };
