@@ -6,6 +6,7 @@
   "dependencies": {
     "firebase": "^5.0.4",
     "jest-cli": "^23.0.0-alpha.0",
+    "lodash": "^4.17.10",
     "material-ui": "^0.20.0",
     "moment": "^2.22.1",
     "react": "^16.2.0",
