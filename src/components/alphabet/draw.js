@@ -97,7 +97,7 @@ export default class Draw extends Component {
         tessedit_char_whitelist: letters,
       })
         .then(result => {
-          console.log('result.confidence', result.confidence);
+          // console.log('result.confidence', result.confidence);
           if (this.state.isDrawn && result.confidence < 70 && result.confidence > 2) {
               this.setState({
                 // Remettre le compteur à 0 après.
@@ -107,7 +107,7 @@ export default class Draw extends Component {
                 isDrawn: false,
               });
               // console.log('attemptsNbr', this.state.attemptsNbr, 'resultConfidence', this.state.resultConfidence);
-          } else if (result.confidence > 60) {
+          } else if (result.confidence > 70) {
             this.setState({isCharRecognized: true});
             const TesseractRecognition = firebase.database().ref('tesseract_recognition');
             const payload = {
