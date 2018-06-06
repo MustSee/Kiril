@@ -59,6 +59,9 @@ export default class Header extends Component {
           <Link to='/alphabet'>
             <MenuItem onClick={this.handleClose}>Alphabet</MenuItem>
           </Link>
+          <Link to='/words'>
+            <MenuItem onClick={this.handleClose}>Words</MenuItem>
+          </Link>
           <Link to='/contact'>
             <MenuItem onClick={this.handleClose}>Contact</MenuItem>
           </Link>

@@ -17,6 +17,9 @@ export default class Home extends React.Component {
         <Link to='/alphabet'>
           <RaisedButton label="Alphabet" primary={true} style={style} />
         </Link>
+        <Link to='/words'>
+          <RaisedButton label="Words" primary={true} style={style} />
+        </Link>
         <Link to='/contact'>
           <RaisedButton label="Contact" primary={true} style={style} />
         </Link>
