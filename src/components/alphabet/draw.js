@@ -87,16 +87,18 @@ export default class Draw extends Component {
 
   checkCharacter() {
     // console.log('this.state.isDrawn', this.state.isDrawn);
-    let letters = this.props.letter.uppercase + this.props.letter.lowercase;
+    const upperCase = this.props.letter.uppercase;
+    const lowerCase = this.props.letter.lowercase
+    let letters = upperCase + lowerCase;
     // In case the CDN doesn't work, we don't call Tesseract
     if (Tesseract) {
       Tesseract.recognize(this.state.image, {
-        lang: 'bul',
+        lang: upperCase === 'A' ? 'fra' : 'bul',
         tessedit_char_whitelist: letters,
       })
         .then(result => {
-          // console.log('result.confidence', result.confidence);
-          if (this.state.isDrawn && result.confidence < 60 && result.confidence > 2) {
+          console.log('result.confidence', result.confidence);
+          if (this.state.isDrawn && result.confidence < 70 && result.confidence > 2) {
               this.setState({
                 // Remettre le compteur à 0 après.
                 attemptsNbr: this.state.attemptsNbr + 1,

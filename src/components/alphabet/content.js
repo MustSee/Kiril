@@ -21,9 +21,17 @@ export default class Content extends React.Component {
 		super(props);
 		this.state = {
 			slideIndex: 0,
-
+			wordsNbr: 0,
 		};
 	}
+
+	componentDidMount() {
+		this.setState({wordsNbr: this.getRandomInt(2)});
+	}
+
+	getRandomInt = (max) => {
+		return Math.floor(Math.random() * Math.floor(max));
+	};
 
 	handleChange = (value) => {
 		this.setState({
@@ -53,7 +61,7 @@ export default class Content extends React.Component {
 					</div>
 					<div className="content">
 						<div style={styles.headline}>
-							{this.props.prononciation.words[0]} - {this.props.prononciation.words[1]}
+							{this.props.prononciation.words[this.state.wordsNbr][0]} - {this.props.prononciation.words[this.state.wordsNbr][1]}
 						</div>
 					</div>
 					</SwipeableViews>
