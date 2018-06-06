@@ -1,5 +1,12 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import words from './../datas/bulgarian/words';
+
+const getItems = word =>
+  Array.from({ length: word.length}, (v, k) => k).map(k => ({
+    id: `item-${k}`,
+    content: `item ${k}`
+  }));
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -35,9 +42,26 @@ export default class Words extends React.Component {
   constructor() {
     super();
     this.state = {
-      items: [{id: 'item0', content: 'item 0'}, {id: 'item1', content: 'item 1'}]
+      item: [],
+      nbrLetters: 0,
+      currentWord: 0
     };
     this.onDragEnd = this.onDragEnd.bind(this);
+  }
+
+  componentDidMount() {
+    console.log(words);
+    let currentWord = words[this.state.currentWord];
+    let arrayLetter = [];
+    let letters = currentWord.split('').map((letter, index) => {
+      console.log(letter);
+      return arrayLetter.push({id: letter + index, content: letter})
+    });
+    console.log(arrayLetter);
+    this.setState({
+      item : arrayLetter,
+      nbrLetters: letters.length
+    });
   }
 
   onDragEnd(result) {
@@ -47,24 +71,20 @@ export default class Words extends React.Component {
       return;
     }
 
-    const items = reorder(
-      this.state.items,
+    const item = reorder(
+      this.state.item,
       result.source.index,
       result.destination.index
     );
 
     this.setState({
-      items
+      item
     });
   }
 
   render() {
     return(
-      <DragDropContext
-        onDragStart={this.onDragStart}
-        onDragUpdate={this.onDragUpdate}
-        onDragEnd={this.onDragEnd}
-      >
+      <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
             <div
@@ -72,7 +92,7 @@ export default class Words extends React.Component {
               style={getListStyle(snapshot.isDraggingOver)}
               {...provided.droppableProps}
             >
-              {this.state.items.map((item, index) => (
+              {this.state.item.map((item, index) => (
                 <Draggable key={item.id} draggableId={item.id} index={index}>
                   {(provided, snapshot) => (
                     <div
